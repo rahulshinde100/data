@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demoapp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+<div class="container">
+       
+        <div class="col-lg-4 col-sm-6">
+    <div class="card hovercard">
+        <div class="card-background">
+            <img alt="" src="http://lorempixel.com/850/280/people/1/">
+        </div>
+
+        	
+
+        <div class="useravatar">
+        	<%# @imagedemo = Imagedemo.find('1'); %>
+            <img alt="" src="<%#= @imagedemo.image %>">
+        </div>
+        <div class="card-info"> <span class="card-title"><%#= @imagedemo.fname.capitalize %></span>
+
+        </div>
+    </div>
+   
+</div>
+    
+</div>
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Blogger</a>
+    </div>
+</div>
+</nav>
+
+
+
+
+
+<%= yield %>
+
+</body>
+</html>

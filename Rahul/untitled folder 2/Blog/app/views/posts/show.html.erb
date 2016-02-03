@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="field form-group">
+    <%# raise @post.inspect %>
+    Posted by:-<b><%= @post.user.fname.capitalize %> <%= @post.user.lname.capitalize %></b>
+<% if user_signed_in?  %>
+
+      <% if @post.user.id == current_user.id  %>
+
+
+
+
+
+<%= link_to  category_post_path(@post.category_id , @post), method: :delete, data: { confirm: 'Are you sure?' } ,class: "glyphicon glyphicon-remove
+" do %>
+          
+          <% end %>
+
+
+   <%#= link_to 'Post Delete', category_post_path(@post.category_id , @post), method: :delete, data: { confirm: 'Are you sure?' }  rescue "" %>
+
+
+
+
+      <% end %>
+      <% end %>
+      <br><br><br>
+      <%= image_tag @post.image.url(:medium) %>  <br><br>
+     <p id ="showtitle"> <font size = "7" ><%= @post.title.capitalize %></font></p>
+     <p id="showdescription"><%= @post.description %></p>
+     
+         
+            <p id= "catid"> Category:-<%= @post.category.title %> </p>
+
+
+              <p id="tagid" > Tags:- <% @post.tags.each do |tag| %>
+              <%=link_to tag.title , tag_path( tag ) %> ,
+          <% end %></p>
+
+          <p id="timestamp">Posted <%= time_ago_in_words(@post.created_at) %> ago </p>
+      <% @com=@post.comments %>
+        
+     
+     <% @com.each do |c| %>
+      <% if user_signed_in? %>
+      <% if c.user.id == current_user.id %>
+
+        <%#= link_to '-', edit_category_post_comment_path(@post.category , @post, c ) %>
+
+        <p  class="divider">  
+
+            <%= link_to  category_post_comment_path(@post.category.id , @post.id, c ), method: :delete, data: { confirm: 'Are you sure?' } ,class: "glyphicon glyphicon-remove
+" do %>
+          
+          <% end %>
+
+
+
+          <% end %> <% end %><%= c.user.fname.capitalize %> <%= c.user.lname.capitalize %>:- <%= c.comment_string %><p id="timestamp"><%= time_ago_in_words(c.created_at) %> ago</p></p>
+    
+    
+     <% end %>      
+
+      <%= render partial: "comments/form" , locals: {category: @post.category , post: @post} %>
+
+     
+
+
+  </div><br><br>
+
+<%= link_to new_category_post_path(@category), class: 'btn btn-success' do %>
+  <i class="glyphicon glyphicon-plus"></i> New Post
+<% end %>
+
+</font size = "5"><%#= link_to 'Back', :back %></font>
+
+<%#= link_to 'Edit', edit_post_path(@post) %> 
+<%#= link_to 'Back', posts_path %>

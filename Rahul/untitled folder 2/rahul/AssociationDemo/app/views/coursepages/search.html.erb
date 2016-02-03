@@ -1,0 +1,33 @@
+<%# if @student.empty? %>
+<%# render :find %>
+
+<%# else %>
+
+
+
+
+<center>
+<h1>Listing All Courses</h1>
+ 
+<table>
+  <tr>
+  	<th>Course Code</th>
+  	<th> Courses Name</th>
+  	<th> Department Name</th>
+   
+  </tr>
+ 
+  
+    <tr>
+    	<td><%= @courses.id %></td>
+    	<td><%= @courses.name %></td>
+      <td><%= @courses.department.name %></td>
+     
+    </tr>
+
+</table>
+
+<br><br><br>
+<%= link_to 'Home', '../home/index' %>
+</center>
+<%# end %>

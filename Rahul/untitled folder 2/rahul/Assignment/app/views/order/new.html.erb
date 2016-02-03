@@ -1,0 +1,102 @@
+
+	<center><h1>Order</h1></center>
+
+<%= form_for @order , url: order_create_path , method: 'post' ,:id => @product do |f| %>
+<center>
+
+
+<br><br><br>
+
+<% if @order.errors.any?  %>
+<h2>Errors...</h2>
+<ul>
+<% @order.errors.full_messages.each do |msg|  %>
+<li> <%= msg %></li>
+<% end %>
+</ul>
+<% end  %>
+
+
+<% product_id = @product.id %>
+<table>
+	<tr>
+		<th><%= f.label  "Company Name" %></th>
+		<th><%= f.label  @product.company_name %></th>		
+</tr>
+
+<tr>
+		<th><%= f.label  "Product Name" %></th>
+		<th><%= f.label  @product.product_name %></th>
+</tr>
+
+<tr>
+		<th><%= f.label  "Available Quantity" %></th>
+		<th><%= f.label  @product.available_quantity %></th>
+</tr>
+
+			
+
+		<tr>
+	<th><%= f.label 'product id : ' %></th>
+	<th><%= f.text_field  :product_id  , :value => product_id.to_i %></th>
+	</tr>
+
+
+
+
+	<tr>
+<th><%= f.label 'Full Name : ' %></th>
+<th><%= f.text_field :full_name , :placeholder=>'Enter the Full Name' , :required => true %></th>
+</tr>
+	
+
+	<tr>
+<th><%= f.label 'Quantity : ' %></th>
+<th><%= f.text_field :quantity ,:placeholder=>'Enter the Quantity' , :required => true %></th>
+</tr>
+
+	
+	<tr>
+<th><%= f.label 'Email ID : ' %></th>
+<th><%= f.text_field :email , :placeholder=>'Enter email id' , :required => true %></th>
+</tr>
+
+<tr>
+<th><%= f.label 'Mobile Number : ' %></th>
+<th><%= f.text_field :mobno , :placeholder=>'Enter mob no.' , :required => true %></th>
+</tr>
+
+
+<tr> 
+	<th><h2>Adreess Details</h2></th>
+	<th></th>
+</tr>
+
+	<tr>
+<th><%= f.label 'City : ' %></th>
+<th><%= f.text_field  :city ,:placeholder=>'Enter the City Name' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'State : ' %></th>
+<th><%= f.text_field  :state , :placeholder=>'Enter the State Name' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'Postal Code : ' %></th>
+<th><%= f.text_field  :postal_code ,:placeholder=>'Enter the Postal Code' , :required => true %></th>
+</tr>
+
+	<% amount = params[:quantity].to_i * 5 %>
+
+	<tr>
+<th></th>
+
+<th><%= submit_tag :Submit %></th>
+</tr>
+
+</table>
+</center>
+
+
+
+<% end %>
+

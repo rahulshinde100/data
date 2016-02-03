@@ -1,0 +1,29 @@
+<h1>Listing articles123s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles123s.each do |articles123| %>
+      <tr>
+        <td><%= articles123.title %></td>
+        <td><%= articles123.body %></td>
+        <td><%= link_to 'Show', articles123 %></td>
+        <td><%= link_to 'Edit', edit_articles123_path(articles123) %></td>
+        <td><%= link_to 'Destroy', articles123, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Articles123', new_articles123_path %>

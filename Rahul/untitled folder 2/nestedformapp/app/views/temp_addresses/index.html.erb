@@ -1,0 +1,33 @@
+<h1>Listing temp_addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Village</th>
+      <th>District</th>
+      <th>Pincode</th>
+      <th>Student</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temp_addresses.each do |temp_address| %>
+      <tr>
+        <td><%= temp_address.village %></td>
+        <td><%= temp_address.district %></td>
+        <td><%= temp_address.pincode %></td>
+        <td><%= temp_address.student %></td>
+        <td><%= link_to 'Show', temp_address %></td>
+        <td><%= link_to 'Edit', edit_temp_address_path(temp_address) %></td>
+        <td><%= link_to 'Destroy', temp_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Temp address', new_temp_address_path %>

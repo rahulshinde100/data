@@ -1,0 +1,2 @@
+module DepartmentpagesHelper
+end

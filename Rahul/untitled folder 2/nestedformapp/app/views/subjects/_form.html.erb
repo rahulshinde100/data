@@ -1,0 +1,18 @@
+
+
+  <div class="field">
+    <%= f.label :all_subjects %><br>
+    <%#= f.check_box :all_subjects , :id, Mysubject.all  %>
+  </div>
+ 
+
+ <%= f.fields_for :all_subjects do |tf| %>
+       <%- Mysubject.all.each do |option| %>
+        <%= tf.label option.my_subjects do %>
+          <%= tf.check_box nil, { id: nil, checked: false }, option.my_subjects %>
+          <%= option.my_subjects %>
+      <% end %>
+        <br>
+    <% end %>
+      <% end %>
+      

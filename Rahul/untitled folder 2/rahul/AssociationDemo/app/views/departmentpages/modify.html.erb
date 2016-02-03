@@ -1,0 +1,24 @@
+<h1><center>=: New Department := </center></h1>
+
+<%= form_for @department ,  url: 'modify' do |f| %>
+
+
+<br><br>
+<center>
+<table>
+	<tr>
+<th><%= f.label 'Department : ' %></th>
+<th><%= f.text_field :name , :placeholder=>'Enter the Name' , :required => true %></th>
+</tr>
+
+	<th></th>
+	<th><%= submit_tag 'Save Department' %></th>
+	</tr>
+
+
+
+</table>
+
+</ceter>
+
+<% end %>

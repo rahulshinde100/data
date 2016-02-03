@@ -1,0 +1,2 @@
+module Articles123sHelper
+end

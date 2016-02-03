@@ -1,0 +1,2 @@
+module TempAddressesHelper
+end

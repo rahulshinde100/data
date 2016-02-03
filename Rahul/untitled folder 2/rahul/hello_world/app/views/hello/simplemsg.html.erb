@@ -1,0 +1,12 @@
+<html>
+<head><h1>My site</h1></head>
+<%= form_tag :action => 'addition' do %>
+<p><label for = "num1_title">Number 1</label>:
+	<%= text_field 'add1', 'num1_title' %></p>
+
+	<p><label for = "num2_title">Number 2</label>:
+	<%= text_field 'add2', 'num2_title' %></p>
+
+	<%= submit_tag "ADD" %>
+<% end %>
+<html>

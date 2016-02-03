@@ -1,0 +1,56 @@
+<h1><center>=: New Student := </center></h1>
+
+<%= form_for @student ,  :url => 'create'  do |f| %>
+
+<% if @student.errors.any?  %>
+<h2>Errors...</h2>
+<ul>
+<% @student.errors.full_messages.each do |msg|  %>
+<li> <%= msg %></li>
+<% end %>
+</ul>
+<% end  %>
+
+<% @departments = Department.all %>
+<%  @classes = Array.new([['I', 1], ['II', 2], ['III', 3], ['IV', 4]]) %>
+
+<%  @courses = Course.all %>
+
+<br><br>
+<center>
+<table>
+	<tr>
+<th><%= f.label 'Name : ' %></th>
+<th><%= f.text_field :name , :placeholder=>'Enter the Name' , :required => true %></th>
+</tr>
+
+<tr>
+	<th><%= f.label 'Class : ' %></th>
+	<th><%= f.select :std , @classes , prompt: true %></th>
+	</tr>
+<tr>
+
+
+<tr>
+	<th><%= f.label 'Course : ' %></th>
+	<th><%= collection_select(:student, :course_id, @courses, :id, :name, prompt: true ) %></th>
+	</tr>
+<tr>
+
+
+<tr>
+	<th><%= f.label 'Department : ' %></th>
+	<th><%= collection_select(:student, :department_id, @departments, :id, :name, prompt: true ) %></th>
+	</tr>
+<tr>
+	<th></th>
+	<th><%= submit_tag 'Save Student Record' %></th>
+	</tr>
+
+
+
+</table>
+
+</ceter>
+
+<% end %>

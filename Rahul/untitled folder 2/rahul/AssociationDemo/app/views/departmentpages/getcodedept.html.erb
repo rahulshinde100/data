@@ -1,0 +1,21 @@
+<h1><center>=: Search Department := </center></h1>
+
+<%= form_for @department ,  url: 'edit'  do |f| %>
+
+<br><br>
+<center>
+<table>
+  <tr>
+<th><%= f.label 'Department Code : ' %></th>
+<th><%= f.text_field :id , :placeholder=>'Enter the Department Code No.' , :required => true %></th>
+</tr>
+
+<tr>
+  <th></th>
+  <th><%= submit_tag 'Search' %></th>
+  </tr>
+
+
+</table>
+</center>
+<% end %>

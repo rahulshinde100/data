@@ -1,0 +1,75 @@
+
+	<center><h1>Product Entry</h1></center>
+
+<%= form_for @product , url: product_create_path , method: 'post' do |f| %>
+<center>
+
+<br><br><br>
+
+<% if @product.errors.any?  %>
+<h2>Errors...</h2>
+<ul>
+<% @product.errors.full_messages.each do |msg|  %>
+<li> <%= msg %></li>
+<% end %>
+</ul>
+<% end  %>
+
+
+
+<table>
+	<tr>
+<th><%= f.label 'Company Name : ' %></th>
+<th><%= f.text_field :company_name , :placeholder=>'Enter the Company Name' , :required => true %></th>
+</tr>
+
+	<tr>
+<th><%= f.label 'Product Name : ' %></th>
+<th><%= f.text_field :product_name , :placeholder=>'Enter Product Name' , :required => true %></th>
+</tr>
+
+	<tr>
+<th><%= f.label 'Quantity : ' %></th>
+<th><%= f.text_field :available_quantity ,:placeholder=>'Enter the Quantity' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'Price : ' %></th>
+<th><%= f.text_field :price , :placeholder=>'Enter the Price' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'SKU Code : ' %></th>
+<th><%= f.text_field :sku , :placeholder=>'Enter the SKU Code' , :required => true %></th>
+</tr>
+<tr> 
+	<th><h2>Adreess Details</h2></th>
+	<th></th>
+</tr>
+
+	<tr>
+<th><%= f.label 'City : ' %></th>
+<th><%= f.text_field  :city ,:placeholder=>'Enter the City Name' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'State : ' %></th>
+<th><%= f.text_field  :state , :placeholder=>'Enter the State Name' , :required => true %></th>
+</tr>
+	<tr>
+<th><%= f.label 'Postal Code : ' %></th>
+<th><%= f.text_field  :postal_code ,:placeholder=>'Enter the Postal Code' , :required => true %></th>
+</tr>
+
+	<tr>
+<th></th>
+
+<th><%= submit_tag :Submit %></th>
+</tr>
+
+</table>
+</center>
+
+
+
+
+
+<% end %>
+

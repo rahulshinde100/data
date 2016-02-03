@@ -1,0 +1,89 @@
+<h1>Listing imagedemos</h1>
+<script>
+ $(document).ready(function(){
+    $(".btn").click(function(){
+        swal({
+  title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, delete it!",
+  closeOnConfirm: false
+},
+function(){
+  swal("Deleted!", "Your imaginary file has been deleted.", "success");
+});
+    });
+}); 
+
+
+$('#delete-confirm').on('show', function() {
+  var $submit = $(this).find('.btn-danger'),
+      href = $submit.attr('href');
+  $submit.attr('href', href.replace('pony', $(this).data('id')));
+});
+
+$('.delete-confirm').click(function(e) {
+  e.preventDefault();
+  $('#delete-confirm').data('id', $(this).data('id')).modal('show');
+});
+
+
+</script>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Fname</th>
+      <th>Lname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @imagedemos.each do |imagedemo| %>
+      <tr>
+        <td><%= imagedemo.fname %></td>
+        <td><%= imagedemo.lname %></td>
+        <td><%= link_to 'Show', imagedemo %></td>
+        <td><%= link_to 'Edit', edit_imagedemo_path(imagedemo) %></td>
+
+
+
+        <td>
+            <div class="modal fade" id="delete-confirm">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Delete this thing?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Be certain, sonny.</p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'Delete', imagedemo, method: :delete, :class => 'btn btn-danger' %>
+    <!--a href="#" data-dismiss="modal" class="btn">Cancel</a-->
+  </div>
+</div>
+
+
+
+
+          <%#= link_to 'Destroy', imagedemo, method: :delete, data: { confirm: 'Are you sure?' }  , class: "btn" %>
+
+
+
+
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Imagedemo', new_imagedemo_path , :rel => 'tooltip' %>

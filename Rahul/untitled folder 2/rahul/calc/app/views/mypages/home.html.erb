@@ -1,0 +1,20 @@
+<html>
+<head><h1>Calculator</h1></head>
+<%= form_tag :action => 'addition' do  %>
+<p><label for ='num1'> Number 1: </label>
+	<%= text_field 'num1','number1' %></p>
+<p><label for ='num1'> Number 2: </label>
+	<%= text_field 'num2','number2' %></p>
+
+<%= button_to :Addition ,  name: 'add' , action: 'addition' %><br><br>
+
+
+
+	<% end%>
+	<%#
+	<%= link_to 'Addition', {:action => 'addition'} EEEENNNNDDDDD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<%= link_to 'Substraction', {:action => 'substraction'} EEEENNNNDDDDD<br><br><br>
+	<%= link_to 'Multiplication', {:action => 'multiplication'} EEEENNNNDDDDD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<%= link_to 'Division', {:action => 'division'} %>
+	
+</html>

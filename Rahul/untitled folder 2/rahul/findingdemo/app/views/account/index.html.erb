@@ -1,0 +1,27 @@
+<h1>Account</h1>
+<%= link_to :New , action: 'new' %> <br><br>
+<%= link_to :Edit , action: 'getaccountnoforupdate' %><br><br>
+<%= link_to :Delete , action: 'delete' %> <br><br>
+<%= link_to :Find , action: 'find' %> <br><br>
+
+
+
+<h1>Listing Accounts</h1>
+ 
+<table>
+  <tr>
+  	<th>Account No.</th>
+  	<th>Name</th>
+    <th>Address</th>
+    <th>Amount</th>
+  </tr>
+ 
+  <% @accounts.each do |account| %>
+    <tr>
+    	<td><%= account.id %></td>
+    	<td><%= account.name %></td>
+      <td><%= account.address %></td>
+      <td><%= account.amount %></td>
+    </tr>
+  <% end %>
+</table>

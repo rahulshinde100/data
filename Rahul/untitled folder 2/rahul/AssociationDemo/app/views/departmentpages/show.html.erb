@@ -1,0 +1,19 @@
+<center>
+<h1>Listing All Department</h1>
+ 
+<table>
+  <tr>
+  	<th>Dept. Id</th>
+  	<th> Dept. Name</th>
+   
+  </tr>
+ 
+  <% @departments.each do |c| %>
+    <tr>
+    	<td><%= c.id %></td>
+    	<td><%= c.name %></td>
+     
+    </tr>
+  <% end %>
+</table>
+</center>

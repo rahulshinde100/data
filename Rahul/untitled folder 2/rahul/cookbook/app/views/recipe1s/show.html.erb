@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @recipe1.title %>
+</p>
+
+<p>
+  <strong>Instruction:</strong>
+  <%= @recipe1.instruction %>
+</p>
+
+<%= link_to 'Edit', edit_recipe1_path(@recipe1) %> |
+<%= link_to 'Back', recipe1s_path %>

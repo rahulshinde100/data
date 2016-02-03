@@ -1,0 +1,19 @@
+<h1>Your Accounts Information is:- </h1>
+ 
+<table>
+  <tr>
+    <th>Account No.</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Amount</th>
+  </tr>
+ 
+  <%# @accounts.each do |account| %>
+    <tr>
+      <td><%= @account.id %></td>
+      <td><%= @account.name %></td>
+      <td><%= @account.address %></td>
+      <td><%= @account.amount %></td>
+    </tr>
+  <%# end %>
+</table>

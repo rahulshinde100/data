@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Village:</strong>
+  <%= @temp_address.village %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @temp_address.district %>
+</p>
+
+<p>
+  <strong>Pincode:</strong>
+  <%= @temp_address.pincode %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @temp_address.student %>
+</p>
+
+<%= link_to 'Edit', edit_temp_address_path(@temp_address) %> |
+<%= link_to 'Back', temp_addresses_path %>

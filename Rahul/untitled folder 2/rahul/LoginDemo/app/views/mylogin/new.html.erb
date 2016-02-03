@@ -1,0 +1,40 @@
+<h1><center>Create New Account</center></h1>
+
+<%= form_for @mylogin ,  url: 'create' do |f| %>
+<% if @mylogin.errors.any?  %>
+<h2>Errors...</h2>
+<ul>
+<% @mylogin.errors.full_messages.each do |msg|  %>
+<li> <%= msg %></li>
+<% end %>
+</ul>
+<% end  %>
+
+<br><br>
+<center>
+<table>
+	<tr>
+<th><%= f.label 'Email Id:' %></th>
+<th><%= f.text_field :username %></th>
+</tr>
+<tr>
+<th><%= f.label 'Password:' %></th>
+<th><%= f.text_field :password %></th>
+</tr>
+
+<tr>
+<th><%= f.label 'Confirm Your Password:' %></th>
+<th><%= f.text_field :confirmpassword %></th>
+</tr>
+<tr>
+	<th></th>
+	<th><%= submit_tag 'Create Account' %></th>
+	</tr>
+
+
+
+</table>
+
+</ceter>
+
+<% end %>

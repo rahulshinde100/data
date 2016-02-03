@@ -1,0 +1,234 @@
+
+                <% if question.types == "1" %>
+                    <%= question.que_content %><br>
+                    <%= render partial: "answer_types/textfield" , locals: {:answer => question.answer_options} %>
+
+                    <% %>
+
+                <% end %>
+
+            <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= form_tag [@survey, @givenanswer] , { class: 'form-class', id: "html5Form" , role: 'form', method: 'post' } do  %>
+
+
+
+       
+        <%= hidden_field_tag :survey_id, value: @survey.id %>
+
+
+        <% @questions.each_with_index do |question, index| %>
+         <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <span class="badge"><%= question.id %></span> <%= question.que_content %></div>
+                <%= hidden_field_tag "total_questions" ,  question.id %>
+              <%#= question.index(question.que_content) %>    
+          <div class="panel-body">
+
+            
+                  <% if question.types == "1" %>
+                      <br>
+
+                      <div class="form-group">
+                          <div class="col-lg-4">
+                    <%= text_field_tag "answer_#{index+1}" , nil , class: 'form-control' , required: true %>
+                    <%= hidden_field_tag "types_#{index+1}" , question.types %>
+                          </div>
+                          <br>
+                      </div>
+                  <% elsif question.types == "2" %>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-lg-4">
+                  <%= text_area_tag "answer_#{index+1}" ,nil ,  class: "form-control" ,required: true %>
+                   <%= hidden_field_tag "types_#{index+1}" , question.types %>
+                  </div>
+                          <br><br>
+                      </div>
+
+                <% elsif question.types == "3" %>
+                      <% question.answer_options.split('\n').each do |option| %>  
+                      <br>
+                           <%= radio_button_tag "answer_#{index+1}" , option , nil ,required: true %> <%= option %>
+                      <% end %>  
+                       <%= hidden_field_tag "types_#{index+1}" , question.types %>
+                    
+
+                  <% elsif  question.types == "4" %>
+
+                       <% question.answer_options.split('\n').each do |option| %> 
+                    <br>
+                      <%= check_box_tag "answer_#{index+1}[]" , option %> <%= option  %>
+                        
+
+                    <% end %>
+                     <%= hidden_field_tag "types_#{index+1}" , question.types %>
+
+                       <br> <br> <br>
+
+                    <%#= check_box_tag "answer_#{index+1}[]",  question.answer_options.split('\n')  %><%#=  question.answer_options.split('\n') %>
+              
+              
+                <% end %>
+             
+                <br>
+              </div>
+              <br>
+          </div>
+          <br>
+        <% end %>
+
+
+        <div class="actions form-group">
+    <div class="col-sm-offset-3 col-sm-3">
+      <%= submit_tag "Submit" ,   class: "btn btn-primary btn-block btn-lg"  %>
+    </div>
+  </div>
+
+        
+<br><br><br><br>
+
+    <% end %>
+    <% end %>
+
+
+
+
+
+
+
+
+#raise params.inspect
+        # total_question = params[:total_question].to_i
+        #   for i in 1..total_question
+        #     if params['types_'+i.to_s]== "checkbox"
+        #       question_answer = params[:given_answer][i.to_s][:answer_options]
+        #       question_answer.delete('0')
+        #       question_answer = question_answer.join('\n')
+        #       @attempt_questions = GivenAnswer.new(:user_id =>current_user.id , :question_id => i , :survey_id => params[:survey_id] , :answer => question_answer)
+        #       @attempt_questions.save   
+        #       else
+        #         question_answer = params[:given_answer][i.to_s][:answer_options]
+        #         @attempt_questions = GivenAnswer.new(:user_id =>current_user.id , :question_id => i , :survey_id => params[:survey_id] , :answer => question_answer)
+        #         @attempt_questions.save
+        #     end
+        #   end
+        #   @survey = Survey.find(params[:survey_id])
+        #   redirect_to survey_given_answers_path(@survey)       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        total_question=params[:total_questions]
+
+          for i in 1...total_question.to_i+1
+
+            if params['types_'+i.to_s] == "4"
+              checkbox_hash=params['answer_'+i.to_s]
+                s = checkbox_hash.size
+                  question_answer=""  
+                  for j in 0...s
+                  question_answer =question_answer+'\n '+ checkbox_hash[j].to_s
+                   end
+                    @attemptquestion = GivenAnswer.new(:user_id =>current_user.id , :question_id => i , :survey_id => params[:survey_id] , :answer => question_answer)
+                    @attemptquestion.save
+            else
+              question_answer = params['answer_'+i.to_s]
+              @attemptquestion = GivenAnswer.new(:user_id =>current_user.id , :question_id => i , :survey_id => params[:survey_id] , :answer => question_answer)
+              @attemptquestion.save    
+            end
+          end
+          @survey = Survey.find(params[:survey_id])
+          @questions = @survey.questions
+
+
+
+
+
+
+
+
+
+<---------------------------show Report------------------------->
+
+  <%# @options = GivenAnswer.where(:question_id => que.id) %>
+    
+    <!-- <td> 
+      <ul>
+        <%# checkbox_array=[] %>        
+        <%# @options.map(&:answer).uniq.each do |option| %>
+
+          <%# if que.types == "checkbox" %>
+            <%# checkbox_array=checkbox_array + option.split('\n') %>
+          <%# else %>
+            <li><%#= option %></li>
+          <%# end %>  
+        <%# end %>
+        <%# checkbox_array.uniq.each do |checkbox_ans| %>
+          <li><%#= checkbox_ans %></li>             
+        <%# end %>
+    </ul>
+    </td> -->
+    
+
+
+  <!-- <td> 
+    <%# checkbox_array=[] %>  
+    <%#  @options.map(&:answer).uniq.each do |option| %>
+      <%# if que.types == "checkbox" %>
+        <%# checkbox_array=checkbox_array + option.split('\n') %>         
+      <%# else %>     
+        <%# @counts = GivenAnswer.where(:answer => option) %> 
+        <%#= @counts.count %><br>   
+      <%# end%>
+    <%# end%>
+        <%# checkbox_array.uniq.each do |checkbox_ans| %>
+          <%#= checkbox_array.count(checkbox_ans) %><br>  
+        <%# end %>
+
+  </td> 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

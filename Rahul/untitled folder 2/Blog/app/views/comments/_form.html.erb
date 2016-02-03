@@ -1,0 +1,33 @@
+<% @post = Post.find_by_permalink(params[:id]) %>
+<%# @category = Category.find_by_permalink(@post.category_id) %>
+<% @category = @post.category %>
+
+<%  @comment=Comment.new %>
+<%= form_for [@category, @post, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label "Comment", class: 'col-sm-1 control-label' %> <br>
+    <div class="col-sm-5">
+      <%= f.text_area :comment_string, class: 'form-control' , :placeholder=>'Enter the Comment' , required: true %>
+    </div>
+  </div>
+<div>
+    <%= f.hidden_field :post_id   , value: @post.id %>
+  </div><br><br><br><br>
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-warning" %>
+    </div>
+  </div>
+<% end %>

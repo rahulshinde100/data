@@ -1,0 +1,19 @@
+<h1>Create new Account</h1>
+<%= form_for :account , url: 'update' do |f| %>
+<%# @accounts.each do |account| %>
+<p><%= f.label :id %>Id
+<%= f.text_field  :id %>
+</p>
+<p><%= f.label :name %>Name:
+<%= f.text_field  :name %>
+</p>
+<p><%= f.label  :address %>Address:
+<%= f.text_field  :address   %>
+</p>
+<p><%= f.label :amount %>Amount:
+<%= f.text_field  :amount %>
+
+</p>
+<%# end %>
+<%= f.submit %>
+<% end %>

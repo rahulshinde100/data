@@ -1,0 +1,55 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :classs %><br>
+    <%= f.text_field :classs %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+ <h3>Address</h3>
+      <div>
+        <%= f.fields_for :subjects do |addr| %>
+
+          <!--div class="field">
+            <%#= addr.label :village %><br>
+            <%#= addr.text_field :village %>
+          </div>
+          <div class="field">
+            <%#= addr.label :district %><br>
+            <%#= addr.text_field :district %>
+          </div>
+          <div class="field">
+            <%#= addr.label :pincode %><br>
+            <%#= addr.number_field :pincode %>
+          </div-->
+
+          <%= render "subjects/form" , :f => addr %>
+          
+         <% end %>
+ 
+       <%#= f.fields_for :addresses do |addr| %>
+       <%#= render "addresses/form" , :f => addr %>
+        <%# end %>
+      </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

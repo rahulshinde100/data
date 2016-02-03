@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+
+
+
+body
+{
+	background-color: #B0B0B0;
+	
+}
+#timestamp
+{
+		color: black;
+}
+
+#home
+{
+	 float:left;
+	 margin-left: 20px;		
+}
+
+#tagid
+{
+	color: #800000;
+}
+#header
+{
+
+	background-color:  	#1E90FF;
+	height: 50px;
+	color: #87CEFA;
+}
+
+#un
+{
+	color: red;
+	margin-left: 1500px;
+
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 60px;
+	padding: 10px;
+
+
+}
+
+#catid
+{
+	color: #6A5ACD;
+}
+
+#showdescription
+{
+	color: black;
+}
+#showtitle
+{
+	font-weight: bold;
+	color: red;	
+}
+
+h1
+{
+	color: #000080;
+}
+
+#showpost
+{
+
+	background-color: #FFEBCD;
+	width: 500px;
+	color: #87CEFA;
+	margin-top: 10px;
+	margin-left: 50px;
+	border: 1px dashed;
+	border-radius: 10px 120px;
+	
+}
+
+#showcategory
+{
+	background-color: #FFEBCD;
+	width: 500px;
+	color: #87CEFA;
+	margin-top: 10px;
+	margin-left: 50px;
+	border: 1px dashed;
+	border-radius: 10px 120px;
+}

@@ -1,0 +1,39 @@
+<html>
+
+<body>
+
+
+    <div id="header">
+  <center><h1>Ruby on Rails Assignment -> BLOG</h1></center>
+</div>
+<center>
+  <h1>Create New  Blog Account</h1>
+<%= form_for @user , url: 'create'  do |f| %>
+  
+<table>
+  <tr>
+   <th> <%= f.label :email %> </th>
+   <td> <%= f.text_field :email , :placeholder=>'Enter Email ID' , required: true %><br><td>
+</tr>
+<tr>
+   <th> <%= f.label :passowrd %></th>
+   <td> <%= f.password_field :password , :placeholder=>'Enter Password' ,required: true %><br></td> 
+</tr>
+<tr>
+    <th><%= f.label :confirm_password %></th>
+    <td><%= f.password_field :confirm_password  , :placeholder=>'Enter Confirm Password' , required: true %><br></td>
+ </tr>
+<tr> 
+  
+ <th></th>
+  <th><%= f.submit 'Create User' %></th><br><br>
+  </tr>  
+</table>
+<% end %>
+<br><br><br>
+<%= link_to 'Home', '/login/index' %>
+
+</center>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<html>
+<head>
+  <%#script src="jquery-1.11.3.min.js" ></script%>
+<script>
+
+$(document).ready(function(){
+    $("#postcontent").hide();
+    $("#tagcontent").hide();
+    $("#categorycontent").hide();
+
+    $("#createpost").click(function(){
+        $("#postcontent").show();
+        $("#tagcontent").hide();
+        $("#categorycontent").hide();
+    });
+
+    $("#cancelbtn").click(function(){
+        $("#postcontent").hide();
+    });
+
+    $("#createtag").click(function(){
+        $("#tagcontent").show();
+        $("#postcontent").hide();
+        $("#categorycontent").hide();
+    });
+
+     $("#cancelbtntag").click(function(){
+        $("#tagcontent").hide();
+    });
+
+
+     $("#createcategory").click(function(){
+        $("#categorycontent").show();
+        $("#tagcontent").hide();
+        $("#postcontent").hide();
+    });
+
+     $("#cancelbtncategory").click(function(){
+        $("#categorycontent").hide();
+    });
+
+
+       $("#add").click(function(){
+     var selected=$("#options option:selected").val();
+     var data=$("#selection").val();
+        $("#selection").val( data+selected+'\n' );
+    });
+
+
+
+
+});
+  </script>
+
+
+
+   
+
+  </head>
+<body>
+  
+
+<% current_user = User.find_by_id(session[:user_id]) %>
+<div id="uname" >
+	
+<p id ="un">User Name:-<%= current_user.email %> | <%= link_to "Logout" ,'/seesion/destroy'%> </p>
+</div>
+
+<div id="header">
+	<center><h1>Ruby on Rails Assignment -> BLOG</h1></center>
+</div>
+
+<div id="action">
+<center><%= submit_tag "Post" , :id => "createpost" %> <%= submit_tag "Tag" , :id => "createtag" %>   <%= submit_tag "Category" , :id => "createcategory" %></center>
+
+	</div>
+
+<%############################  Post Content ##################################%>
+
+
+	<div id ="postcontent">
+    <center>
+	<%= form_for @post , url: "create" do |f| %>
+
+  	
+    <%= f.label :title %>
+    <%= f.text_field :title , :placeholder=>'Enter the Title' , required: true , :id => "title" %><br><br>
+  	
+ 
+
+    <%= f.label :description %>
+    <%= f.text_area :description , :placeholder=>'Enter the Description' , required: true , :id => "description" %><br><br>
+  	
+      
+
+      
+    <%= f.collection_select(:category_id , @categories, :id, :title,  :id => "options" , prompt: true ) %><br><br>
+    <%#= check_box_tag :post_tag_ids , "post_tag_ids[]", tag.id  %>
+
+      <%#  Tag.all.each do |tag| %>
+      <%#= check_box_tag "post_tag[post_ids][]" tag.id %>
+      <%#= tag.title_name %>
+      <%# end %>
+
+     <%#= collection_check_boxes(:post, :post_tag_ids, Tag.all, :tag_title, :tag_title) do |b| %>
+     <%#= b.label(:value => 'abc') { b.check_box(class: "check_box") } %>
+  <%#  end %>
+
+
+<%#= f.collection_select(:tag_id , Tag.all , :id , :tag_title  , {:multiple => true}) %>
+    <%#= check_box_tag(:post_tag_ids , @tags.tag_title , checked = false, options = {}) %>
+
+    <%= fields_for(@post_tag) do |ab| %>
+    <%= ab.label "All Tags" %><br/>
+
+<%#= collection_select(:tags , :id , Tag.all , :id, :tag_title, {} , {:multiple => true}) %>
+<%#collection_select(:post, :category_id, Category.all, :id, :name, {disabled: lambda{|category| category.archived? }}) %>
+<% end %>
+
+  	
+    <%= f.submit :Submit %><br><br>
+  
+
+		<% end %>
+
+    <%= submit_tag "Cancel" , :id => "cancelbtn" %>
+  </center>
+	</div>
+
+  <%############################  category Content ##################################%>
+
+  <div id ="categorycontent">
+    <center>
+  <%= form_for @category , url: categories_create_path do |f| %>
+
+    
+    <%= f.label :title %>
+    <%= f.text_field :title , :placeholder=>'Enter the Category' , required: true , :id => "category_title" %><br><br>
+    
+    
+    <%= f.submit :Submit %><br><br>
+  
+
+    <% end %>
+
+    <%= submit_tag "Cancel" , :id => "cancelbtncategory" %>
+  </center>
+  </div>
+
+<%############################  tag Content ##################################%>
+
+  <div id ="tagcontent">
+    <center>
+  <%= form_for @tag , url: "/tags/create" do |f| %>
+
+    
+    <%= f.label :tag_title %>
+    <%= f.text_field :tag_title , :placeholder=>'Enter the Tag' , required: true , :id => "tag_title" %><br><br>
+    
+    
+    <%= f.submit :Submit %><br><br>
+  
+
+    <% end %>
+
+    <%= submit_tag "Cancel" , :id => "cancelbtntag" %>
+  </center>
+  </div>
+
+
+  <%############################  show Post  ##################################%>
+
+<% @posts.each do |post| %>
+   
+	<div id="showpost">
+    <%= post.user.email %>
+     <p id ="showtitle">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= post.title %></p>
+     <p id="showdescription"><%= post.description %></p>
+     
+         
+            <p id= "catid"> Category:-<%= post.category.title %>
+
+
+     
+       </p><% @com=post.comments %>
+        
+     
+     <% @com.each do |c| %>
+      <p id ="commentid">   <%= c.user.email %>:- <%= c.comment_string %><br></p>
+     <% end %>
+ 
+
+
+       <%= form_for @comment , url: comments_create_path , method: 'post' do |f| %>
+    <%= f.label "Comment" %>
+    <%= f.text_area :comment_string , :placeholder=>'Enter the Comment' , required: true , :id => "comment" %><br><br>
+    <%= f.hidden_field :post_id , value: post.id %>
+
+
+    
+      
+
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<%= f.submit "Comment" %><br><br>
+      <% end %>
+
+
+  </div>
+   <% end %>
+</body>
+</html>

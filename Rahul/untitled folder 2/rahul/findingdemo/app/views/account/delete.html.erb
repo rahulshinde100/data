@@ -1,0 +1,10 @@
+<h1>Enter the Account Number</h1>
+
+
+
+<%= form_for :account , url: 'destroy' do |f| %>
+<p>
+<%= f.text_field :id %>
+</p>
+<%= f.submit 'Delete Acount' %>
+<% end %>

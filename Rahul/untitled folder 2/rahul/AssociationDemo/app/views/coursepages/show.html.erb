@@ -1,0 +1,21 @@
+<center>
+<h1>Listing All Courses</h1>
+ 
+<table>
+  <tr>
+  	<th>Course Id</th>
+  	<th> Course Name</th>
+    <th> Department Name</th>
+   
+  </tr>
+ 
+  <% @courses.each do |c| %>
+    <tr>
+    	<td><%= c.id %></td>
+    	<td><%= c.name %></td>
+      <td><%= c.department.name %></td>
+     
+    </tr>
+  <% end %>
+</table>
+</center>

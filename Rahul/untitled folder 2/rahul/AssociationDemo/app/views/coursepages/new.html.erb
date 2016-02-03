@@ -1,0 +1,40 @@
+<h1><center>=: New Course := </center></h1>
+
+<%= form_for @course ,  url: 'create' do |f| %>
+
+
+<% if @course.errors.any?  %>
+<h2>Errors...</h2>
+<ul>
+<% @course.errors.full_messages.each do |msg|  %>
+<li> <%= msg %></li>
+<% end %>
+</ul>
+<% end  %>
+
+
+<% @departments = Department.all %>
+
+<br><br>
+<center>
+<table>
+	<tr>
+<th><%= f.label 'Course : ' %></th>
+<th><%= f.text_field :name , :placeholder=>'Enter the Name' , :required => true %></th>
+</tr>
+<tr>
+	<th><%= f.label 'Department : ' %></th>
+	<th><%= collection_select(:course, :department_id, @departments, :id, :name, prompt: true ) %></th>
+	</tr>
+<tr>
+	<th></th>
+	<th><%= submit_tag 'Save Course' %></th>
+	</tr>
+
+
+
+</table>
+
+</ceter>
+
+<% end %>

@@ -1,0 +1,22 @@
+<h1>New Book Entry</h1>
+
+<%= form_tag action: 'create' do %>
+<p>
+
+<label for = "title">Title</label>:
+<%= text_field :title , :title %>
+</p>
+<p>
+
+<label for = "price">Price</label>:
+<%= text_field :price , :price %>
+</p>
+
+<p><%= collection_select(:books, :subject_id, @subjects, :id, :name, prompt: true) %></p>
+<p><label for = "book_description">Description</label><br/></p>
+
+<%= submit_tag :Submit %>
+
+
+<% end %>
+

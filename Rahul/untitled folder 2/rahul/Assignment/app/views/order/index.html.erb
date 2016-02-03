@@ -1,0 +1,23 @@
+<table width='350' >
+	<tr>
+	<th>Company Name</th>
+	<th>Product Name</th>
+	<th>Available Quantity</th>
+	<th>Price Per Item</th>
+</tr>
+<%  @product.each do | p | %>
+<td><%= p.company_name %></td>
+<td><%= p.product_name %></td>
+<td><%= p.available_quantity %></td>
+<td><%= p.price %></td>
+
+<% if p.available_quantity.to_i == 0 %>
+<td> Not Available </td>
+<% else %>
+<td><%= link_to 'Order' ,{ :action => "new",:id => p.id } -%></td>
+<% end %>
+
+</tr>
+
+<% end %>
+</table>
